@@ -6,6 +6,9 @@ public class PlayerMoveSystem : MonoBehaviour
     public Vector3 directionVec = new Vector3(0,0,0);
     private Rigidbody rb;
     public float speed;
+    public float maxSpeed;
+
+    public float actualFloat;
     private void Start()
     {
         directionVec = new Vector3(0, 0,0);
@@ -23,20 +26,27 @@ public class PlayerMoveSystem : MonoBehaviour
         }
         if (direction == DirectionType.Right)
         {
-            directionVec.z += 1;
+            directionVec.z -= 1;
         }
         if (direction == DirectionType.Left)
         {
-            directionVec.z -= 1;
+            directionVec.z += 1;
         }
     }
     private void LateUpdate()
     {
         NormalizeVec();
         //faire le movement 
-        rb.AddForce(directionVec* speed);
+        if (rb.linearVelocity.magnitude + speed> maxSpeed)
+        {
+            rb.linearVelocity = (directionVec * maxSpeed);
+        }
+        else
+        {
+            rb.linearVelocity += (directionVec * speed);
 
-
+        }
+        actualFloat = rb.linearVelocity.magnitude;
         directionVec = Vector3.zero;
         //remmetre le vec a 0
     }
