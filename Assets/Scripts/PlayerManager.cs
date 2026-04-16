@@ -2,42 +2,22 @@ using UnityEngine;
 
 public class PlayerManager : MonoBehaviour
 {
-    [SerializeField] private PlayerMoveSystem moveSystem;
-    [SerializeField] private RSE_Input _Input;
+    public RSE_Player playerEvent;
+
+    public GameObject playerPrefab;
+    public GameObject spawnPoint;
 
     private void OnEnable()
     {
-        _Input.Zpressed += MoveForward;
-        _Input.Spressed += MoveBackward;
-
-        _Input.Dpressed += MoveRight;
-        _Input.Qpressed += MoveLeft;
+        playerEvent.Spawn += SpawnPlayer;
     }
-
     private void OnDisable()
     {
-        _Input.Zpressed -= MoveForward;
-        _Input.Spressed -= MoveBackward;
-
-        _Input.Dpressed -= MoveRight;
-        _Input.Qpressed -= MoveLeft;
+        playerEvent.Spawn -= SpawnPlayer;
     }
 
-    private void MoveForward ()
+    private void SpawnPlayer()
     {
-        moveSystem.Move(DirectionType.Forward);
+        Instantiate(playerPrefab, spawnPoint.transform.position,Quaternion.Euler(0,45,0), this.transform);
     }
-    private void MoveBackward()
-    {
-        moveSystem.Move(DirectionType.Backward);
-    }
-    private void MoveRight()
-    {
-        moveSystem.Move(DirectionType.Right);
-    }
-    private void MoveLeft()
-    {
-        moveSystem.Move(DirectionType.Left);
-    }
-
 }

@@ -1,14 +1,13 @@
 using UnityEngine;
-using UnityEngine.PlayerLoop;
 
-public class PlayerMoveSystem : MonoBehaviour
+public class MoveSystem : MonoBehaviour
 {
     public Vector3 directionVec = new Vector3(0,0,0);
     private Rigidbody rb;
     public float speed;
     public float maxSpeed;
-
     public float actualFloat;
+
     private void Start()
     {
         directionVec = new Vector3(0, 0,0);
@@ -39,16 +38,19 @@ public class PlayerMoveSystem : MonoBehaviour
         //faire le movement 
         if (rb.linearVelocity.magnitude + speed> maxSpeed)
         {
-            rb.linearVelocity = (directionVec * maxSpeed);
+            //rien
         }
         else
         {
-            rb.linearVelocity += (directionVec * speed);
+            rb.linearVelocity += (directionVec * speed)/4;
 
+        }
+        if (rb.linearVelocity.magnitude <0.01)
+        {
+            rb.linearVelocity = new Vector3(0,0,0);
         }
         actualFloat = rb.linearVelocity.magnitude;
         directionVec = Vector3.zero;
-        //remmetre le vec a 0
     }
 
     private void NormalizeVec ()
@@ -73,8 +75,21 @@ public class PlayerMoveSystem : MonoBehaviour
 
         directionVec.Normalize();
     }
+
+
+
+
+
 }
 public enum DirectionType
 {
     Forward, Backward, Right, Left
 }
+
+
+
+
+
+
+
+
