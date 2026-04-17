@@ -28,7 +28,8 @@ public class GameManager : MonoBehaviour
         chronoOnOff = true;
         StartCoroutine(StartTimer(timer.MaxTime));
         player.InvokeSpawn(Turn);
-        
+        timer.turn = Turn;
+
     }
 
     private void ObjectifDone ()
@@ -59,14 +60,17 @@ public class GameManager : MonoBehaviour
             }
             
         }
+        timer.turn = Turn;
     }
 
     IEnumerator StartTimer (float MaxTime)
     {
         yield return new WaitForSeconds(0.1f);
+        print("time ++");
         timer.Timer += 0.1f;
         if (timer.Timer >= MaxTime)
         {
+            timer.Timer = 0f;
             TimerEnded();
         }
         else
@@ -92,6 +96,7 @@ public class GameManager : MonoBehaviour
             print("objectif de l'ennemi accompli");
             ennemiObjectiveDone = true;
             player.InvokeObjectifDone();
+            StartCoroutine(StartTimer(timer.MaxTime));
         }
         else
         {

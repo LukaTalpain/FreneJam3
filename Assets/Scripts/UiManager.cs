@@ -1,4 +1,5 @@
 using System;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,7 +9,7 @@ public class UiManager : MonoBehaviour
     public Image sprite;
     [SerializeField] private Color Team1Color;
     [SerializeField] private Color Team2Color;
-
+    [SerializeField] private TextMeshProUGUI turnText;
     public SoTimer timer;
 
 
@@ -23,6 +24,7 @@ public class UiManager : MonoBehaviour
         {
             sprite.color = Team2Color;
         }
+        turnText.text = "Turn : " + timer.turn;
     }
 
 

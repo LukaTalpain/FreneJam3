@@ -4,6 +4,7 @@ public class PlayerManager : MonoBehaviour
 {
     public RSE_Player playerEvent;
 
+    public GameObject playerOriginalPrefab;
     public GameObject playerPrefab;
     public List<GameObject> spawnPoint;
 
@@ -21,7 +22,7 @@ public class PlayerManager : MonoBehaviour
     {
         if (Turn == 0)
         {
-            GameObject _Instance =  Instantiate(playerPrefab, new Vector3(spawnPoint[0].transform.position.x, spawnPoint[0].transform.position.y + 1, spawnPoint[0].transform.position.z), Quaternion.Euler(0, 45, 0), this.transform);
+            GameObject _Instance =  Instantiate(playerOriginalPrefab, new Vector3(spawnPoint[0].transform.position.x, spawnPoint[0].transform.position.y + 1, spawnPoint[0].transform.position.z), Quaternion.Euler(0, 45, 0), this.transform);
             _Instance.GetComponent<Actor>().IsMainPlayer = true;
         }
         else

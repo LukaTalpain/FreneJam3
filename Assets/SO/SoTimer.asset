@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7343d5a22ca00e40ac53cfddf94c35c, type: 3}
   m_Name: SoTimer
   m_EditorClassIdentifier: Assembly-CSharp::SoTimer
-  PlayerTime: 0
+  PlayerTime: 1
   Timer: 0
   MaxTime: 15
+  turn: 3
