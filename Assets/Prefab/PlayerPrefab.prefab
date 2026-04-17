@@ -141,9 +141,11 @@ GameObject:
   - component: {fileID: 6494400914700610834}
   - component: {fileID: 1745121034145242062}
   - component: {fileID: 8004343159470347526}
+  - component: {fileID: 6522292133541061332}
+  - component: {fileID: 1612247510501016445}
   m_Layer: 0
   m_Name: PlayerPrefab
-  m_TagString: Untagged
+  m_TagString: Object
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -196,7 +198,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6750955855013500379}
   serializedVersion: 5
-  m_Mass: 1
+  m_Mass: 5
   m_LinearDamping: 2.5
   m_AngularDamping: 2.5
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -245,6 +247,35 @@ MonoBehaviour:
   speed: 5
   maxSpeed: 25
   actualFloat: 0
+--- !u!114 &6522292133541061332
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6750955855013500379}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f0b31ee1b4804448b09c8f870b6ac97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Actor
+  action: {fileID: 1745121034145242062}
+  itsCamera: {fileID: 457156476599765638}
+  IsPlayer: 1
+  IsMainPlayer: 0
+--- !u!114 &1612247510501016445
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6750955855013500379}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6dc3c3643336d584b87ffc41309cd3ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InputStorage
+  playerEvent: {fileID: 11400000, guid: c36f676d4f507da4da7d662be75ed4f8, type: 2}
 --- !u!1 &8421823060963664212
 GameObject:
   m_ObjectHideFlags: 0

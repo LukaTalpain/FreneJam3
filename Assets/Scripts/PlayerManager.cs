@@ -7,6 +7,8 @@ public class PlayerManager : MonoBehaviour
     public GameObject playerPrefab;
     public GameObject spawnPoint;
 
+    private GameObject LastPlayerSpawned;
+
     private void OnEnable()
     {
         playerEvent.Spawn += SpawnPlayer;
@@ -16,8 +18,18 @@ public class PlayerManager : MonoBehaviour
         playerEvent.Spawn -= SpawnPlayer;
     }
 
-    private void SpawnPlayer()
+    private void SpawnPlayer(int Turn)
     {
-        Instantiate(playerPrefab, spawnPoint.transform.position,Quaternion.Euler(0,45,0), this.transform);
+        if (Turn == 0)
+        {
+            GameObject _Instance =  Instantiate(playerPrefab, new Vector3(spawnPoint.transform.position.x, spawnPoint.transform.position.y + 1, spawnPoint.transform.position.z), Quaternion.Euler(0, 45, 0), this.transform);
+            _Instance.GetComponent<Actor>().IsMainPlayer = true;
+            LastPlayerSpawned = _Instance;
+        }
+        else
+        {
+            GameObject _Instance = Instantiate(playerPrefab, new Vector3(spawnPoint.transform.position.x, spawnPoint.transform.position.y + 1, spawnPoint.transform.position.z), Quaternion.Euler(0, 45, 0), this.transform);
+        }
+        
     }
 }
