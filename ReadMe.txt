@@ -3,7 +3,7 @@ Voici les 2 modifiers :
 	- You are your own enemy
 
 Regles du jeux :
--au debut du jeux on joue l'equipe bleu et plus precisement la boule original.
+- au debut du jeux on joue l'equipe bleu et plus precisement la boule original.
 - la boule original (qui est la seul de couleur bleu) a pour bût de rentrer dans la boule dorée !
 
 -il y a deux equipes (rouge et bleu), les bleus ont pour but de s'assurer que le boule original aille bien dans la boule dorée,
@@ -11,7 +11,13 @@ et les rouges ont pour but d'empecher la boule original d'entrer dans a boule do
 
 -vous pouvez savoir a tout moment de quelle equipe vous etes en regardant la couleur du slider (qui fait office de timer) 
 
--vous pouvez clicker sur n'importe quoi pour en prendre le controle ! (tout !) (sauf exeption)
+-vous pouvez clicker sur n'importe quoi pour en prendre le controle ! (tout !) (sauf exeption : sol,limite de la map...)
 
 -le but est de faire 10 tours !
+
+
+Bug connu : 
+- il y a chez moi des erreurs rouge venant de unity (je n'en connait pas la cause) 
+- si on prend le controle de l'objectif, il n'a pas de collider et on peut sortir de la carte 
+
 
