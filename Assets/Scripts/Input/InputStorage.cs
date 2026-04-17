@@ -24,6 +24,7 @@ public class InputStorage : MonoBehaviour
 
     private void NewTurn()
     {
+        print("new turn ");
         List<Vector3> mergedList = new List<Vector3>();
 
         for (int i = 0; i < DirectionList.Count; i++)
@@ -55,6 +56,7 @@ public class InputStorage : MonoBehaviour
         }
 
         OldDirectionList = mergedList;
+        //OldDirectionList = OldDirectionList.GetRange(0, OldDirectionList.Count / 2);
         DirectionList.Clear();
     }
 
@@ -71,6 +73,7 @@ public class InputStorage : MonoBehaviour
         {
             if (oldIndex >= index)
             {
+                //print(index + "sur : " + oldIndex);
                 return OldDirectionList[index-1];
             }
             else

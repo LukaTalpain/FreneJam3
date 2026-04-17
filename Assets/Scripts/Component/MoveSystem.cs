@@ -9,6 +9,17 @@ public class MoveSystem : MonoBehaviour
     public float maxSpeed;
     public float actualFloat;
     [SerializeField] private InputStorage storage;
+    [SerializeField] private RSE_Player player;
+
+    private void OnEnable()
+    {
+        player.ObjectifDone += ResetEverything;
+
+    }
+    private void OnDisable()
+    {
+        player.ObjectifDone -= ResetEverything;
+    }
 
     private void Start()
     {
@@ -34,7 +45,7 @@ public class MoveSystem : MonoBehaviour
             directionVec.z += 1;
         }
     }
-    private void LateUpdate()
+    private void FixedUpdate()
     {
         NormalizeVec();
         storage.AddDirection(directionVec);
@@ -82,7 +93,11 @@ public class MoveSystem : MonoBehaviour
         directionVec.Normalize();
     }
 
-
+    public void ResetEverything ()
+    {
+        rb.linearVelocity = Vector3.zero;
+        directionVec = Vector3.zero;
+    }
 
 
 

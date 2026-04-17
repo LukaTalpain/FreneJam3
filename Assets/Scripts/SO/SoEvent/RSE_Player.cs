@@ -9,6 +9,7 @@ public class RSE_Player : ScriptableObject
 
     public event Action ObjectifDone;
 
+    public event Action PlayerLost;
     public void InvokeSpawn(int Turn)
     {
         Spawn?.Invoke(Turn);
@@ -16,5 +17,10 @@ public class RSE_Player : ScriptableObject
     public void InvokeObjectifDone ()
     {
         ObjectifDone?.Invoke();
+    }
+
+    public void InvokePlayerLost()
+    {
+        PlayerLost?.Invoke();
     }
 }

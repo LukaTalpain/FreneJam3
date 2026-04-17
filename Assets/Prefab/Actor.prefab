@@ -135,6 +135,7 @@ MonoBehaviour:
   maxSpeed: 25
   actualFloat: 0
   storage: {fileID: -8563553389147807393}
+  player: {fileID: 11400000, guid: c36f676d4f507da4da7d662be75ed4f8, type: 2}
 --- !u!114 &-8563553389147807393
 MonoBehaviour:
   m_ObjectHideFlags: 0

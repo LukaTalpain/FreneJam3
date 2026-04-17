@@ -60,7 +60,6 @@ public class PlayerAction : MonoBehaviour
         {
             if (hit.transform.gameObject.CompareTag("Object"))
             {
-                print("objet touché");
                 hit.transform.gameObject.GetComponent<Actor>().Alive();
                 _camera.enabled = false;
                 this.enabled = false;

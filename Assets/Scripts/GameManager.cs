@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -6,6 +7,10 @@ public class GameManager : MonoBehaviour
     private int Turn;
     public int MaxTurn;
 
+    public SoTimer timer;
+
+    public bool chronoOnOff;
+    public bool ennemiObjectiveDone;
     private void OnEnable()
     {
         player.ObjectifDone += ObjectifDone;
@@ -16,16 +21,82 @@ public class GameManager : MonoBehaviour
     }
     private void Start()
     {
+        ennemiObjectiveDone = false;
         Turn = 0;
+        timer.PlayerTime = true;
+        timer.Timer = 0f;
+        chronoOnOff = true;
+        StartCoroutine(StartTimer(timer.MaxTime));
         player.InvokeSpawn(Turn);
+        
     }
 
     private void ObjectifDone ()
     {
         if (Turn < MaxTurn)
         {
-            Turn++;
-            player.InvokeSpawn(Turn);
+            if (timer.PlayerTime)
+            {
+                Turn++;
+                chronoOnOff = false;
+                timer.PlayerTime = !timer.PlayerTime;
+                player.InvokeSpawn(Turn);
+            }
+            else
+            {
+                if (ennemiObjectiveDone)
+                {
+                    ennemiObjectiveDone = false;
+                    Turn++;
+                    chronoOnOff = false;
+                    timer.PlayerTime = !timer.PlayerTime;
+                    player.InvokeSpawn(Turn);
+                }
+                else
+                {
+                    player.InvokePlayerLost();
+                }
+            }
+            
+        }
+    }
+
+    IEnumerator StartTimer (float MaxTime)
+    {
+        yield return new WaitForSeconds(0.1f);
+        timer.Timer += 0.1f;
+        if (timer.Timer >= MaxTime)
+        {
+            TimerEnded();
+        }
+        else
+        {
+            if (chronoOnOff)
+            {
+                StartCoroutine(StartTimer(MaxTime));
+            }
+            else
+            {
+                timer.Timer = 0f;
+                chronoOnOff = true;
+                StartCoroutine (StartTimer(MaxTime));
+            }
+        }
+        
+    }
+
+    private void TimerEnded ()
+    {
+        if (!timer.PlayerTime)
+        {
+            print("objectif de l'ennemi accompli");
+            ennemiObjectiveDone = true;
+            player.InvokeObjectifDone();
+        }
+        else
+        {
+            print("lost");
+            player.InvokePlayerLost();
         }
     }
 }
