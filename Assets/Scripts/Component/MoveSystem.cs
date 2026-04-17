@@ -1,3 +1,4 @@
+using UnityEditor.SceneManagement;
 using UnityEngine;
 
 public class MoveSystem : MonoBehaviour
@@ -7,6 +8,7 @@ public class MoveSystem : MonoBehaviour
     public float speed;
     public float maxSpeed;
     public float actualFloat;
+    [SerializeField] private InputStorage storage;
 
     private void Start()
     {
@@ -35,6 +37,9 @@ public class MoveSystem : MonoBehaviour
     private void LateUpdate()
     {
         NormalizeVec();
+        storage.AddDirection(directionVec);
+        directionVec += storage.GetDirection();
+        NormalizeVec();
         //faire le movement 
         if (rb.linearVelocity.magnitude + speed> maxSpeed)
         {
@@ -50,6 +55,7 @@ public class MoveSystem : MonoBehaviour
             rb.linearVelocity = new Vector3(0,0,0);
         }
         actualFloat = rb.linearVelocity.magnitude;
+        
         directionVec = Vector3.zero;
     }
 

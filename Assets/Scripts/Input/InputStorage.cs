@@ -57,4 +57,28 @@ public class InputStorage : MonoBehaviour
         OldDirectionList = mergedList;
         DirectionList.Clear();
     }
+
+    public Vector3 GetDirection ()
+    {
+        int index = DirectionList.Count;
+        int oldIndex = OldDirectionList.Count;
+
+        if (oldIndex ==0)
+        {
+            return Vector3.zero;
+        }
+        else
+        {
+            if (oldIndex >= index)
+            {
+                return OldDirectionList[index-1];
+            }
+            else
+            {
+                return Vector3.zero;
+            }
+        }
+
+            
+    }
 }

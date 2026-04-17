@@ -247,6 +247,7 @@ MonoBehaviour:
   speed: 5
   maxSpeed: 25
   actualFloat: 0
+  storage: {fileID: 1612247510501016445}
 --- !u!114 &6522292133541061332
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -263,6 +264,7 @@ MonoBehaviour:
   itsCamera: {fileID: 457156476599765638}
   IsPlayer: 1
   IsMainPlayer: 0
+  playerEvent: {fileID: 11400000, guid: c36f676d4f507da4da7d662be75ed4f8, type: 2}
 --- !u!114 &1612247510501016445
 MonoBehaviour:
   m_ObjectHideFlags: 0

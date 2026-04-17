@@ -7,6 +7,20 @@ public class Actor : MonoBehaviour
     private Vector3 spawnPos;
     public bool IsPlayer;
     public bool IsMainPlayer;
+
+    public RSE_Player playerEvent;
+
+    private void OnEnable()
+    {
+        playerEvent.ObjectifDone += ResetItSelf;
+    }
+
+    private void OnDisable()
+    {
+        playerEvent.ObjectifDone -= ResetItSelf;
+    }
+
+
     private void Start()
     {
         spawnPos = transform.position;
@@ -28,5 +42,12 @@ public class Actor : MonoBehaviour
     {
         action.enabled = true;
         itsCamera.enabled = true;
+    }
+
+    private void ResetItSelf()
+    {
+        action.enabled = false;
+        itsCamera.enabled = false;
+        transform.position = spawnPos;
     }
 }
